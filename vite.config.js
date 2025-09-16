@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "./aic-langalanga-web",
+  base: "./aic-langalanga-web/",
   build: {
     outDir: "dist",
   },
