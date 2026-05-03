@@ -6,17 +6,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
   const [showOfferingModal, setShowOfferingModal] = useState(false)
   const [showFundraisingModal, setShowFundraisingModal] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  // Check if screen is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   // Close mobile menu when clicking outside or on a link
   const handleNavClick = (pageId) => {
@@ -38,19 +27,19 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
       <header className="sticky top-0 z-50 bg-slate-600/90 backdrop-blur-sm border-b border-slate-800">
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex justify-between items-center">
-            {/* Logo - Made smaller on mobile */}
-            <div className="flex items-center">
+            {/* Logo - responsive sizing */}
+            <div className="flex items-center flex-shrink-0">
               <div className="bg-white/25 p-1 md:p-2 rounded-lg backdrop-blur-sm border border-white/0">
                 <img 
                   src={logo} 
                   alt="Aiclangalanga Church" 
-                  className="h-16 md:h-32 w-auto object-contain"
+                  className="h-12 sm:h-16 md:h-32 w-auto object-contain"
                 />
               </div>
             </div>
 
-            {/* Desktop Navigation - Hidden on mobile */}
-            <nav className="hidden md:flex flex-wrap justify-center gap-4 lg:gap-8">
+            {/* Desktop Navigation - Hidden on mobile/tablet */}
+            <nav className="hidden lg:flex flex-wrap justify-center gap-4 xl:gap-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -80,10 +69,15 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
               )}
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Desktop Social Links */}
+            <div className="hidden lg:block">
+              <SocialLinks />
+            </div>
+
+            {/* Mobile Menu Button - Shows on tablet and mobile */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-all duration-300"
+              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-all duration-300 ml-2"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 flex flex-col justify-between">
@@ -92,59 +86,65 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 <span className={`w-full h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
               </div>
             </button>
-
-            {/* Desktop Social Links - Hidden on mobile */}
-            <div className="hidden md:block">
-              <SocialLinks />
-            </div>
           </div>
 
-          {/* Mobile Navigation Menu */}
-          <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+          {/* Mobile Navigation Menu - Full width with proper spacing */}
+          <div className={`lg:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[650px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
             <nav className="flex flex-col gap-2 pb-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`py-3 px-4 font-medium transition-all duration-300 rounded-lg text-left ${
-                    currentPage === item.id 
-                      ? 'text-emerald-400 bg-emerald-400/10 border-l-4 border-emerald-400' 
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button
-                onClick={() => {
-                  setShowOfferingModal(true)
-                  setIsMobileMenuOpen(false)
-                }}
-                className="py-3 px-4 font-medium transition-all duration-300 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg hover:from-emerald-600 hover:to-cyan-600 shadow-lg text-center mt-2"
-              >
-                Give Offerings
-              </button>
-              {showFundraising && (
+              {/* Navigation Links */}
+              <div className="space-y-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`w-full py-3 px-4 font-medium transition-all duration-300 rounded-lg text-left ${
+                      currentPage === item.id 
+                        ? 'text-emerald-400 bg-emerald-400/10 border-l-4 border-emerald-400' 
+                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="space-y-2 mt-2">
                 <button
                   onClick={() => {
-                    setShowFundraisingModal(true)
+                    setShowOfferingModal(true)
                     setIsMobileMenuOpen(false)
                   }}
-                  className="py-3 px-4 font-medium transition-all duration-300 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg hover:from-amber-600 hover:to-orange-600 shadow-lg text-center"
+                  className="w-full py-3 px-4 font-medium transition-all duration-300 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg hover:from-emerald-600 hover:to-cyan-600 shadow-lg text-center"
                 >
-                  Support Fundraising
+                  Give Offerings
                 </button>
-              )}
-              {/* Social Links in Mobile Menu */}
-              <div className="pt-4 mt-2 border-t border-slate-700">
-                <SocialLinks />
+                {showFundraising && (
+                  <button
+                    onClick={() => {
+                      setShowFundraisingModal(true)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="w-full py-3 px-4 font-medium transition-all duration-300 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg hover:from-amber-600 hover:to-orange-600 shadow-lg text-center"
+                  >
+                    Support Fundraising
+                  </button>
+                )}
+              </div>
+
+              {/* Social Links Section - Improved for mobile with your existing SocialLinks component */}
+              <div className="pt-4 mt-3 border-t border-slate-700">
+                <p className="text-slate-400 text-xs mb-3 text-center">Follow Us</p>
+                <div className="flex justify-center">
+                  <SocialLinks />
+                </div>
               </div>
             </nav>
           </div>
         </div>
       </header>
 
-      
+  
 
       {/* OFFERINGS MODAL - Responsive */}
       {showOfferingModal && (
@@ -166,7 +166,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
             </div>
             
             <div className="p-4 md:p-6 space-y-4 md:space-y-5 max-h-[60vh] md:max-h-[70vh] overflow-y-auto">
-              {/* Scripture - Responsive */}
+              {/* Scripture */}
               <div className="bg-emerald-500/5 rounded-xl p-3 md:p-4 border-l-4 border-emerald-400">
                 <p className="text-slate-300 leading-relaxed text-xs md:text-sm italic">
                   "Honor the Lord with your wealth, with the firstfruits of all your crops."
@@ -174,7 +174,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </p>
               </div>
 
-              {/* M-Pesa Section - Responsive Grid */}
+              {/* M-Pesa Section */}
               <div className="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-500/30 transition-all duration-300">
                 <div className="bg-emerald-500/10 p-3 md:p-4 border-b border-slate-700">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -213,7 +213,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </div>
               </div>
 
-              {/* Bank Options Grid - Responsive */}
+              {/* Bank Options */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <div className="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-cyan-500/30 transition-all duration-300">
                   <div className="bg-cyan-500/10 p-3 border-b border-slate-700">
@@ -248,7 +248,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </div>
               </div>
 
-              {/* Instructions - Responsive */}
+              {/* Instructions */}
               <div className="bg-slate-800/30 rounded-lg p-3 md:p-4">
                 <h4 className="text-slate-300 text-xs md:text-sm font-semibold mb-2">How to give via M-Pesa:</h4>
                 <ol className="text-slate-400 text-[10px] md:text-xs space-y-1 list-decimal list-inside">
@@ -410,8 +410,8 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
           animation: fadeIn 0.2s ease-out;
         }
         
-        /* Mobile menu smooth transition */
-        @media (max-width: 768px) {
+        /* Smooth mobile menu transition */
+        @media (max-width: 1024px) {
           .max-h-0 {
             max-height: 0;
           }
