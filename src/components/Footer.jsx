@@ -58,7 +58,7 @@ const Footer = ({ setCurrentPage }) => {
               <address className="text-slate-400 not-italic space-y-2">
                 <p>A.I.C Langalanga, F9XC+CC</p>
                 <p>Gilgil, Kenya</p>
-                <p className="pt-2">📞 +254 715577476</p>
+                <p className="pt-2">📞 +254 119585878</p>
                 <p>✉️ aiclangalangagilgil3@gmail.com</p>
               </address>
             </div>
