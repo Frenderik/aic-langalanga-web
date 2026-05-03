@@ -33,7 +33,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-white mb-1">Phone</h3>
-                  <p className="text-slate-300">+254 715577476</p>
+                  <p className="text-slate-300">+254 119585878</p>
                 </div>
               </div>
               
