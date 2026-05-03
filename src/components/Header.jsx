@@ -69,7 +69,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
               )}
             </nav>
 
-            {/* Desktop Social Links */}
+            {/* Desktop Social Links - Adjusted for better visibility */}
             <div className="hidden lg:block">
               <SocialLinks />
             </div>
@@ -132,7 +132,7 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 )}
               </div>
 
-              {/* Social Links Section - Improved for mobile with your existing SocialLinks component */}
+              {/* Social Links Section - Improved for mobile */}
               <div className="pt-4 mt-3 border-t border-slate-700">
                 <p className="text-slate-400 text-xs mb-3 text-center">Follow Us</p>
                 <div className="flex justify-center">
@@ -144,7 +144,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
         </div>
       </header>
 
-  
 
       {/* OFFERINGS MODAL - Responsive */}
       {showOfferingModal && (
@@ -166,7 +165,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
             </div>
             
             <div className="p-4 md:p-6 space-y-4 md:space-y-5 max-h-[60vh] md:max-h-[70vh] overflow-y-auto">
-              {/* Scripture */}
               <div className="bg-emerald-500/5 rounded-xl p-3 md:p-4 border-l-4 border-emerald-400">
                 <p className="text-slate-300 leading-relaxed text-xs md:text-sm italic">
                   "Honor the Lord with your wealth, with the firstfruits of all your crops."
@@ -174,7 +172,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </p>
               </div>
 
-              {/* M-Pesa Section */}
               <div className="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-500/30 transition-all duration-300">
                 <div className="bg-emerald-500/10 p-3 md:p-4 border-b border-slate-700">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -213,7 +210,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </div>
               </div>
 
-              {/* Bank Options */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <div className="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-cyan-500/30 transition-all duration-300">
                   <div className="bg-cyan-500/10 p-3 border-b border-slate-700">
@@ -248,7 +244,6 @@ const Header = ({ currentPage, setCurrentPage, showFundraising = false }) => {
                 </div>
               </div>
 
-              {/* Instructions */}
               <div className="bg-slate-800/30 rounded-lg p-3 md:p-4">
                 <h4 className="text-slate-300 text-xs md:text-sm font-semibold mb-2">How to give via M-Pesa:</h4>
                 <ol className="text-slate-400 text-[10px] md:text-xs space-y-1 list-decimal list-inside">
