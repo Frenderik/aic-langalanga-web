@@ -14,7 +14,7 @@ const SocialLinks = () => {
         </svg>
       </a>
       <a 
-        href="https://youtube.com" 
+        href="https://www.youtube.com/@A.I.CLANGALANGAGILGIL" 
         target="_blank" 
         rel="noopener noreferrer"
         className="w-10 h-10 rounded-full bg-slate-700 hover:bg-red-600 flex items-center justify-center transition-colors"

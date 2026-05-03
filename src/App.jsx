@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -11,11 +10,13 @@ import ContactPage from './pages/ContactPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
+  // Toggle this to true when fundraising campaign is active, false when not
+  const [showFundraising, setShowFundraising] = useState(true) // Set to false to hide fundraising
 
   const renderPage = () => {
     switch(currentPage) {
       case 'home':
-        return <HomePage setCurrentPage={setCurrentPage} />
+        return <HomePage setCurrentPage={setCurrentPage} showFundraising={showFundraising} />
       case 'about':
         return <AboutPage />
       case 'ministries':
@@ -27,13 +28,13 @@ function App() {
       case 'contact':
         return <ContactPage />
       default:
-        return <HomePage setCurrentPage={setCurrentPage} />
+        return <HomePage setCurrentPage={setCurrentPage} showFundraising={showFundraising} />
     }
   }
 
   return (
     <div className="min-h-screen gradient-bg text-white">
-      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} showFundraising={showFundraising} />
       <main>
         {renderPage()}
       </main>

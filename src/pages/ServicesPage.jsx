@@ -45,7 +45,7 @@ const ServicesPage = () => {
       { activity: "Announcements", leader: "Church Secretary", duration: 5 },
       { activity: "Offering", leader: "Deacons", duration: 10 },
       { activity: "Special Music", leader: "Choir/Soloist", duration: 5 },
-      { activity: "Sermon", leader: "Pastor John Maina", duration: 35 },
+      { activity: "Sermon", leader: "Pastor Mbugua", duration: 35 },
       { activity: "Altar Call & Prayer", leader: "Pastoral Team", duration: 10 },
       { activity: "Closing Worship", leader: "Congregation", duration: 5 },
       { activity: "Benediction", leader: "Pastor", duration: 2 }

@@ -5,7 +5,7 @@ import VideoCard from '../components/VideoCard'
 import churchPhoto1 from '../assets/church-photo.jpg'
 import churchPhoto2 from '../assets/Langalanga-church.png'
 
-const HomePage = ({ setCurrentPage }) => {
+const HomePage = ({ setCurrentPage, showFundraising = false }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   
   const slides = [churchPhoto1, churchPhoto2]
@@ -71,14 +71,31 @@ const HomePage = ({ setCurrentPage }) => {
       thumbnail: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
       videoId: "dQw4w9WgXcQ"
     },
-    
   ]
 
   return (
-    <div>
-      {/* Hero Section with Enhanced Slideshow Background */}
+<div>
+  {/* Fundraising Banner */}
+  {showFundraising && (
+    <div className="relative overflow-hidden bg-slate-800/50 backdrop-blur-sm py-3 px-4 z-20 border-b border-amber-500/30">
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-orange-500/10 to-amber-500/5"></div>
+      <div className="container mx-auto text-center relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 flex-wrap">
+          <span className="text-amber-400 font-bold text-base md:text-lg tracking-wide inline-flex items-center gap-2">
+            <span className="text-xl">⭐</span>
+            SPECIAL FUNDRAISING CAMPAIGN ACTIVE
+            <span className="text-xl">⭐</span>
+          </span>
+          <span className="text-slate-400 text-sm md:text-base">
+            • Support our church development project • Use Paybill 303030, Account 2052368726 • Reference: FUNDRAISING
+          </span>
+        </div>
+      </div>
+    </div>
+  )}
+
+{/* Hero Section */}
       <section className="relative py-20 px-4 text-center min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Enhanced Slideshow Background */}
         <div className="absolute inset-0 overflow-hidden">
           {slides.map((slide, index) => (
             <div
@@ -97,18 +114,14 @@ const HomePage = ({ setCurrentPage }) => {
                   filter: 'brightness(0.8) contrast(1.05) saturate(1.1)'
                 }}
               />
-              {/* Lighter Gradient Overlay for better visibility */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-indigo-900/40 to-purple-900/50 mix-blend-soft-light"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-slate-900/70"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-800/30 to-purple-800/30"></div>
-              
-              {/* Lighter vignette effect */}
               <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.5)]"></div>
             </div>
           ))}
         </div>
 
-        {/* Slideshow Indicators */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
           {slides.map((_, index) => (
             <button
@@ -124,7 +137,6 @@ const HomePage = ({ setCurrentPage }) => {
           ))}
         </div>
         
-        {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">
             Welcome to AIC Langalanga Church
@@ -142,9 +154,8 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </section>
 
-      {/* Ministries Section with Modern Design */}
+      {/* Ministries Section */}
       <section className="py-20 px-4 relative">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.1)_1px,_transparent_0)] bg-[length:20px_20px]"></div>
         </div>
@@ -183,9 +194,8 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </section>
 
-      {/* Services Section with Modern Design */}
+      {/* Services Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        {/* Animated Background Elements */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
         
@@ -213,9 +223,8 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </section>
 
-      {/* Media Section with Modern Design */}
+      {/* Media Section */}
       <section className="py-20 px-4 relative">
-        {/* Geometric Background */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[linear-gradient(30deg,_rgba(255,255,255,0.1)_25%,_transparent_25%,_transparent_50%,_rgba(255,255,255,0.1)_50%,_rgba(255,255,255,0.1)_75%,_transparent_75%,_transparent)] bg-[length:20px_20px]"></div>
         </div>
@@ -254,7 +263,7 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </section>
 
-      {/* Call to Action Section */}
+      {/* Call to Action */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-purple-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-400"></div>
